@@ -11,18 +11,19 @@ let repoSchema = mongoose.Schema({
     html_url: String
   },
   html_url: String,
-  description: String
+  description: String,
+  watcher_count: Number
 });
 
 let Repo = mongoose.model('Repo', repoSchema);
 
 let save = (err, Repo) => {
-  if (err) return console.error(err);
-  Repo.save((err, Repo) => {
-    if (err) return console.error(err);
-    console.log('Success!');
-  });
-  // TODO: Your code here
+  // if (err) return console.error(err);
+  // Repo.save((err, Repo) => {
+  //   if (err) return console.error(err);
+  //   console.log('Success!');
+  // });
+  
   // This function should save a repo or repos to
   // the MongoDB
 }
