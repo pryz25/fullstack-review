@@ -1,22 +1,17 @@
 const request = require('request');
 const config = require('../config.js');
+let save = require('../database/index.js');
 
-let getReposByUsername = (username) => {
-  // TODO - Use the request module to request repos for a specific
-  // user from the github API
+
+let getReposByUsername = (username, callback) => {
+  
   let userRepos = (error, response, body) => {
     if (error) {
       console.error(error);
     }
-    return body;
-    // let resp = response.body.filter( (repo) => {
-    //   return repo.owner.login === username;
-    // });
-    
-  }
+    callback(JSON.parse(body));
+  };
 
-  // The options object has been provided to help you out, 
-  // but you'll have to fill in the URL
   let options = {
     url: `https://api.github.com/users/${username}/repos`,
     headers: {
