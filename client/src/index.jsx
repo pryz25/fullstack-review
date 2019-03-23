@@ -22,9 +22,7 @@ class App extends React.Component {
       if (succ) {
         console.log('Success');
       }
-    })
-      // .done( () => {console.log('Success')} )
-      // .fail( () => {console.error('Error')} );
+    });
   }
 
   render () {

@@ -8,7 +8,7 @@ let getReposByUsername = (username) => {
     if (error) {
       console.error(error);
     }
-    console.log(JSON.parse(body));
+    return body;
     // let resp = response.body.filter( (repo) => {
     //   return repo.owner.login === username;
     // });
