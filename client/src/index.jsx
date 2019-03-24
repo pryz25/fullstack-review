@@ -10,15 +10,21 @@ class App extends React.Component {
     this.state = { 
       repos: []
     }
+  }
 
+  componentDidMount() {
+    $.get('/repos', (data, succ) => {
+      if (data) {
+        this.setState({
+          repos: data
+        });
+      }
+    });
   }
 
   search (term) {
     console.log(`${term} was searched`);
-    $.post('/repos', { term }, (err, succ) => {
-      if (err) {
-        console.error('Error');
-      }
+    $.post('/repos', { term }, (succ) => {
       if (succ) {
         console.log('Success');
       }

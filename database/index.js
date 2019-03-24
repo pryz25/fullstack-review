@@ -18,18 +18,25 @@ let repoSchema = mongoose.Schema({
   },
   html_url: String,
   description: String,
-  watcher_count: Number
+  watchers: Number
 });
 
 let Repo = mongoose.model('Repo', repoSchema);
 
+let findRepos = () => {
+  return Repo.find().sort( { watchers: -1 } ).limit(25);
+}
+
 let save = (gitRepo, callback) => {
-  Repo.insertMany(gitRepo, (err, entry) => {
+  Repo.insertMany(gitRepo, (err, docs) => {
     if (err) return console.error(err);
-    console.log('Success!');
   });
   
 }
 // think about what to call back
-  
-module.exports = save
+
+module.exports = {
+  save,
+  db, 
+  findRepos
+}
